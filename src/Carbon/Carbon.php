@@ -354,7 +354,8 @@ class Carbon extends DateTime
       if ($dt instanceof DateTime) {
          return static::instance($dt);
       }
-
+      if( $format != 'Y-m-d H:i:s+' )
+		return static::createFromFormat('Y-m-d H:i:s+', $time, $tz );
       $errors = static::getLastErrors();
       throw new InvalidArgumentException(implode(PHP_EOL, $errors['errors']));
    }
